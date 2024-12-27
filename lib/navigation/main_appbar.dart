@@ -1,6 +1,7 @@
 // lib/navigation/main_appbar.dart
 import 'package:flutter/material.dart';
 import '../utils/global_color.dart';
+import 'main_screen.dart';
 
 class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String rightText;
@@ -36,7 +37,22 @@ class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.maybePop(context);
+                if (Navigator.canPop(context)) {
+                  Navigator.pop(context);
+                } else {
+                  Navigator.of(context).pushReplacement(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) => const MainScreen(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 300),
+                    ),
+                  );
+                }
               },
               padding: EdgeInsets.zero,
             ),
