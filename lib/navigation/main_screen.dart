@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     const Center(child: Text('회의 화면')),  // 임시 회의 화면
     const SearchMember(),                  // 회원검색 화면
     const Announcement(),                  // 공지사항 화면
-    const Announcement(),                    // 공지사항 화면
+    const SearchMember(),                    // 공지사항 화면
   ];
 
   @override
