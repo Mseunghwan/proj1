@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:proj1/screens/announcement.dart';
 import 'package:proj1/navigation/main_navigation.dart';
+import 'package:proj1/screens/search_member.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const Center(child: Text('회의 화면')),  // 임시 회의 화면
-    const Announcement(),                  // 회원검색 화면
+    const SearchMember(),                  // 회원검색 화면
     const Announcement(),                  // 공지사항 화면
     const Announcement(),                    // 공지사항 화면
   ];
