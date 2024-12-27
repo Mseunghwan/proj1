@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   int? _currentIndex; // 초기값 null: 네비게이션 선택 전 상태
 
   final List<Widget> _screens = [
-    const Rules(),
+    const Constitution(),
     const SearchMember(),
     const Announcement(),
     const MembersIssue(),

@@ -51,8 +51,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: sf_snow
+      fonts:
+        - asset: assets/fonts/font_sf.ttf
   assets:
     - assets/images/main_image.png
+    - assets/images/organization_chart.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
