@@ -17,7 +17,7 @@ class MainNavigation extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black12, // 배경색을 하얀색으로 변경
         border: Border(
-          top: BorderSide(color: Colors.grey.shade200), // 테두리 색상 더 연하게
+          top: BorderSide(color: Colors.black12), // 테두리 색상 더 연하게
         ),
       ),
       child: Row(
@@ -43,14 +43,14 @@ class MainNavigation extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 32, // 아이콘 크기 증가
+              size: 32,
               color: isSelected ? const Color(0xFF3B5998) : Colors.grey.shade400,
             ),
-            const SizedBox(height: 6), // 간격 약간 증가
+            const SizedBox(height: 6),
             Text(
               label,
               style: TextStyle(
-                fontSize: 13, // 글자 크기 약간 증가
+                fontSize: 13,
                 color: isSelected ? const Color(0xFF3B5998) : Colors.grey.shade600,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),

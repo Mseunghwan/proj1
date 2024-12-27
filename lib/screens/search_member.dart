@@ -1,8 +1,7 @@
+// lib/screens/search_member.dart
 import 'package:flutter/material.dart';
-import 'package:proj1/utils/global_color.dart'; // GlobalColor import
-
+import 'package:proj1/utils/global_color.dart';
 import '../navigation/main_appbar.dart';
-import '../utils/global_color.dart';
 
 class SearchMember extends StatelessWidget {
   const SearchMember({Key? key}) : super(key: key);
@@ -13,70 +12,93 @@ class SearchMember extends StatelessWidget {
       appBar: const MainAppbar(rightText: '회원검색'),
       body: SafeArea(
         child: Container(
-          color: GlobalColor.lightGray, // 전체 배경색 설정
+          color: GlobalColor.lightGray,
           child: Column(
             children: [
-              // 검색 옵션, 입력창, 버튼 영역
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 12.0,
+                ),
+                color: GlobalColor.white,
                 child: Row(
                   children: [
-                    Flexible(
-                      flex: 3,
-                      child: DropdownButtonFormField<String>(
-                        isExpanded: true, // DropdownButton을 가로 공간에 맞춤
-                        items: const [
-                          DropdownMenuItem(value: "name", child: Text("이름")),
-                          DropdownMenuItem(value: "email", child: Text("이메일")),
-                          DropdownMenuItem(value: "phone", child: Text("전화번호")),
-                        ],
-                        onChanged: (value) {
-                          // 검색 옵션 변경 로직
-                        },
-                        decoration: const InputDecoration(
-                          labelText: "옵션 선택",
-                          border: OutlineInputBorder(),
+                    // 검색 옵션 드롭다운
+                    Container(
+                      height: 44, // 애플 스타일의 높이
+                      decoration: BoxDecoration(
+                        color: GlobalColor.lightGray.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: DropdownButtonHideUnderline( // 밑줄 제거
+                        child: ButtonTheme(
+                          alignedDropdown: true,
+                          child: DropdownButton<String>(
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            isDense: true,
+                            hint: const Text(
+                              "이름",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            items: const [
+                              DropdownMenuItem(value: "name", child: Text("이름")),
+                              DropdownMenuItem(value: "email", child: Text("이메일")),
+                              DropdownMenuItem(value: "phone", child: Text("전화번호")),
+                            ],
+                            onChanged: (value) {},
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                          ),
                         ),
                       ),
-
                     ),
                     const SizedBox(width: 8),
-                    Flexible(
-                      flex: 4,
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: "검색어 입력",
-                          border: OutlineInputBorder(),
+                    // 검색창
+                    Expanded(
+                      child: Container(
+                        height: 44, // 애플 스타일의 높이
+                        decoration: BoxDecoration(
+                          color: GlobalColor.lightGray.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      flex: 2,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // 검색 버튼 로직
-                        },
-                        child: const Text("검색"),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "검색어를 입력하세요",
+                            hintStyle: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 16,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.black54,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-
               const Divider(height: 1, color: Colors.grey),
-              // 회원 리스트 영역
+              // 회원 리스트 (기존 코드 유지)
               Expanded(
                 child: ListView.builder(
-                  itemCount: 20, // 예시 데이터 개수
+                  itemCount: 20,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: const EdgeInsets.only(
-                        top: 8.0,  // 상단 간격
-                        left: 16.0, // 좌측 간격
-                        right: 16.0, // 우측 간격
+                        top: 8.0,
+                        left: 16.0,
+                        right: 16.0,
                       ),
-                      color: GlobalColor.white, // 리스트 아이템 배경색 설정
+                      color: GlobalColor.white,
                       child: ListTile(
                         leading: CircleAvatar(
                           child: Text("M${index + 1}"),
@@ -84,9 +106,7 @@ class SearchMember extends StatelessWidget {
                         title: Text("회원 이름 $index"),
                         subtitle: Text("회원 정보 $index"),
                         trailing: const Icon(Icons.arrow_forward),
-                        onTap: () {
-                          // 회원 상세 정보 페이지로 이동 로직
-                        },
+                        onTap: () {},
                       ),
                     );
                   },

@@ -5,7 +5,9 @@ import 'package:proj1/navigation/main_navigation.dart';
 import 'package:proj1/screens/members_issue.dart';
 import 'package:proj1/screens/search_member.dart';
 
+import '../screens/rules.dart';
 import '../utils/global_color.dart';
+// lib/navigation/main_screen.dart
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,40 +17,53 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = -1; // 초기값 -1: 네비게이션 선택 전 상태
+  int? _currentIndex; // 초기값 null: 네비게이션 선택 전 상태
 
   final List<Widget> _screens = [
-    const Center(), // 임시 회의 화면
-    const SearchMember(), // 회원검색 화면
-    const Announcement(), // 공지사항 화면
-    const MembersIssue(), // 회원홍보 화면
+    const Rules(),
+    const SearchMember(),
+    const Announcement(),
+    const MembersIssue(),
   ];
+
+  // 뒤로가기 처리를 위한 함수
+  Future<bool> _onWillPop() async {
+    if (_currentIndex != null) {
+      setState(() {
+        _currentIndex = null; // 메인 화면으로 돌아가기
+      });
+      return false; // 앱 종료 방지
+    }
+    return true; // 앱 종료 허용
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // 배경 이미지 (첫 화면)
-          if (_currentIndex == -1)
-            Positioned.fill(
-              child: Image.asset(
-                'assets/images/main_image.png', // 배경 이미지 경로
-                fit: BoxFit.cover, // 화면에 맞게 조정
-              ),
-            )
-          else
-          // 선택된 화면의 콘텐츠
-            _screens[_currentIndex],
-        ],
-      ),
-      bottomNavigationBar: MainNavigation(
-        currentIndex: _currentIndex == -1 ? 0 : _currentIndex, // 네비게이션 바 초기 상태 설정
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+    return WillPopScope( // 뒤로가기 처리를 위한 WillPopScope 추가
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            // 배경 이미지 (첫 화면)
+            if (_currentIndex == null)
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/main_image.png',
+                  fit: BoxFit.cover,
+                ),
+              )
+            else
+              _screens[_currentIndex!],
+          ],
+        ),
+        bottomNavigationBar: MainNavigation(
+          currentIndex: _currentIndex ?? -1,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

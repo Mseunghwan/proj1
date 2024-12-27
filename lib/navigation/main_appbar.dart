@@ -1,3 +1,4 @@
+// lib/navigation/main_appbar.dart
 import 'package:flutter/material.dart';
 import '../utils/global_color.dart';
 
@@ -14,32 +15,72 @@ class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: GlobalColor.AppBar,
+      elevation: 0,
+      toolbarHeight: 56.0,
+      titleSpacing: 8,
       title: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          // 뒤로가기 버튼
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            width: 36,
+            height: 36,
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 16,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.maybePop(context);
+              },
+              padding: EdgeInsets.zero,
+            ),
           ),
+          // 로고 텍스트
           const Text(
             '대구MBC',
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 19,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              letterSpacing: -0.3,
             ),
           ),
           const Spacer(),
+          // 오른쪽 텍스트
           Text(
-            rightText, // 전달받은 텍스트를 표시
+            rightText,
             style: const TextStyle(
-              fontSize: 18,
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.2,
             ),
           ),
-          const SizedBox(width: 16),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {},
+          const SizedBox(width: 10),
+          // 설정 버튼
+          Container(
+            margin: const EdgeInsets.only(left: 4),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            width: 36,
+            height: 36,
+            child: IconButton(
+              icon: const Icon(
+                Icons.settings_outlined,
+                size: 18,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+              padding: EdgeInsets.zero,
+            ),
           ),
         ],
       ),
@@ -47,5 +88,5 @@ class MainAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(56.0);
 }
