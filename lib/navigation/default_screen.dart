@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
             Positioned.fill(
               child: Image.asset(
                 'assets/images/main_image.png', // 배경 이미지 경로
-                fit: BoxFit.contain, // 화면에 맞게 조정 (여백 있음)
+                fit: BoxFit.cover, // 화면에 맞게 조정 (여백 있음)
               ),
             ),
           // 선택된 화면의 콘텐츠
