@@ -6,6 +6,8 @@ class SearchMember extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -55,12 +57,18 @@ class SearchMember extends StatelessWidget {
                       flex: 2,
                       child: DropdownButtonFormField<String>(
                         items: const [
-                          DropdownMenuItem(value: "name", child: Text("이름")),
-                          DropdownMenuItem(value: "email", child: Text("이메일")),
-                          DropdownMenuItem(value: "phone", child: Text("전화번호")),
+                          DropdownMenuItem(value: "name", child: Text("옵션1")),
+                          DropdownMenuItem(value: "email", child: Text("옵션2")),
+                          DropdownMenuItem(value: "phone", child: Text("옵션3")),
                         ],
                         onChanged: (value) {
-                          // 검색 옵션 변경 로직
+
+
+
+                          // 검색 옵션 선택 시 이벤트
+
+
+
                         },
                         decoration: const InputDecoration(
                           labelText: "옵션 선택",
@@ -83,39 +91,126 @@ class SearchMember extends StatelessWidget {
                     // 검색 버튼
                     Expanded(
                       flex: 2,
+
                       child: ElevatedButton(
+
                         onPressed: () {
-                          // 검색 버튼 로직
+
+
+                          // 검색 버튼 터치 시 이벤트
+                          
                         },
+                        
                         child: const Text("검색"),
+
                       ),
                     ),
                   ],
                 ),
               ),
               const Divider(height: 1, color: Colors.grey),
+
+
+
+
               // 회원 리스트 영역
               Expanded(
                 child: ListView.builder(
                   itemCount: 20, // 예시 데이터 개수
                   itemBuilder: (context, index) {
+                    final double containerHeight = screenWidth * 0.4; // 반응형 컨테이너 높이
+                    final double imageWidth = screenWidth * 0.3; // 반응형 이미지 폭
+
                     return Container(
-                      margin: const EdgeInsets.only(
-                        top: 8.0,  // 상단 간격
-                        left: 16.0, // 좌측 간격
-                        right: 16.0, // 우측 간격
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 24.0,
+                        horizontal: 16.0,
                       ),
+                      height: containerHeight,
                       color: GlobalColor.white, // 리스트 아이템 배경색 설정
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: Text("M${index + 1}"),
-                        ),
-                        title: Text("회원 이름 $index"),
-                        subtitle: Text("회원 정보 $index"),
-                        trailing: const Icon(Icons.arrow_forward),
-                        onTap: () {
-                          // 회원 상세 정보 페이지로 이동 로직
-                        },
+                      child: Row(
+                        children: [
+                          // 좌측 이미지 공간
+                          Flexible(
+                            flex: 3,
+                            child: Container(
+                              width: imageWidth,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300, // 배경색 (기본 이미지 대체)
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    "https://via.placeholder.com/150", // 샘플 이미지 URL
+                                  ),
+                                  fit: BoxFit.cover, // 이미지를 컨테이너에 맞게 채움
+                                ),
+                              ),
+                            ),
+                          ),
+                          // 회원 정보 텍스트
+                          Flexible(
+                            flex: 7,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "회원 이름 $index (기수 $index)",  //현재 더미 데이터 적용 중
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8), // 이름과 직책 간격 조정
+                                      Text(
+                                        "직책 $index",  //현재 더미 데이터 적용 중
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text("직업 $index"), //현재 더미 데이터 적용 중
+                                  Text("주소 $index"), //현재 더미 데이터 적용 중
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.circle, size: 8, color: Colors.grey),
+                                          const SizedBox(width: 8),
+                                          Text("Tel: 010-1234-5678"),   //현재 더미 데이터 적용 중
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.circle, size: 8, color: Colors.grey),
+                                          const SizedBox(width: 8),
+                                          Text("C.P: 010-8765-4321"),  //현재 더미 데이터 적용 중
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.circle, size: 8, color: Colors.grey),
+                                          const SizedBox(width: 8),
+                                          Text("E-mail: user$index@example.com"),  //현재 더미 데이터 적용 중
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   },
