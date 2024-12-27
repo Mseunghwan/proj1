@@ -8,18 +8,39 @@ class Announcement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
-        title: const Text('공지사항'),
+        automaticallyImplyLeading: false, // 기본 뒤로가기 버튼 제거
         backgroundColor: const Color(0xFF3B5998),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {},
-          ),
-        ],
+        title: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            // MBC 로고
+            const Text(
+              '대구MBC',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Spacer(), // 왼쪽과 오른쪽 사이 공간
+            const Text(
+              '공지사항',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(width: 16), // 오른쪽 여백
+            // 설정 아이콘
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
       body: Column(
         children: [
