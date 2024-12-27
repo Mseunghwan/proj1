@@ -5,7 +5,7 @@ import 'package:proj1/navigation/main_navigation.dart';
 import 'package:proj1/screens/members_issue.dart';
 import 'package:proj1/screens/search_member.dart';
 
-import '../screens/rules.dart';
+import '../screens/constitution.dart';
 import '../utils/global_color.dart';
 // lib/navigation/main_screen.dart
 

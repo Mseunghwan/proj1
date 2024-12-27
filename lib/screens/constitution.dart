@@ -9,9 +9,7 @@ class Constitution extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-      ),
+        appBar: const MainAppbar(rightText: '회칙'),
       body: SingleChildScrollView( // body 전체를 스크롤 가능하게 변경
         child: Container(
           width: double.infinity,
