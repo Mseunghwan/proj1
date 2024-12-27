@@ -1,45 +1,16 @@
 // lib/screens/announcement.dart
 import 'package:flutter/material.dart';
 
+import '../navigation/main_appbar.dart';
+import '../utils/global_color.dart';
+
 class Announcement extends StatelessWidget {
   const Announcement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF3B5998),
-        title: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            const Text(
-              '대구MBC',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Spacer(),
-            const Text(
-              '공지사항',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(width: 16),
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+      appBar: const MainAppbar(rightText: '공지사항'),
       body: Column(
         children: [
           Expanded(

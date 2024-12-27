@@ -1,9 +1,12 @@
 // lib/navigation/main_screen.dart
 import 'package:flutter/material.dart';
+import 'package:proj1/navigation/main_appbar.dart';
 import 'package:proj1/screens/announcement.dart';
 import 'package:proj1/navigation/main_navigation.dart';
 import 'package:proj1/screens/members_issue.dart';
 import 'package:proj1/screens/search_member.dart';
+
+import '../utils/global_color.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
