@@ -15,13 +15,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
+  int _currentIndex = -1; // 초기값 -1: 네비게이션 선택 전 상태
 
   final List<Widget> _screens = [
     const Center(), // 임시 회의 화면
-    const SearchMember(),                 // 회원검색 화면
-    const Announcement(),                 // 공지사항 화면
-    const MembersIssue(),                 // 회원홍보 화면
+    const SearchMember(), // 회원검색 화면
+    const Announcement(), // 공지사항 화면
+    const MembersIssue(), // 회원홍보 화면
   ];
 
   @override
@@ -29,20 +29,21 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // 배경 이미지 (홈 화면에만 표시)
-          if (_currentIndex == 0)
+          // 배경 이미지 (첫 화면)
+          if (_currentIndex == -1)
             Positioned.fill(
               child: Image.asset(
                 'assets/images/main_image.png', // 배경 이미지 경로
-                fit: BoxFit.cover, // 화면에 맞게 조정 (여백 있음)
+                fit: BoxFit.cover, // 화면에 맞게 조정
               ),
-            ),
+            )
+          else
           // 선택된 화면의 콘텐츠
-          _screens[_currentIndex],
+            _screens[_currentIndex],
         ],
       ),
       bottomNavigationBar: MainNavigation(
-        currentIndex: _currentIndex,
+        currentIndex: _currentIndex == -1 ? 0 : _currentIndex, // 네비게이션 바 초기 상태 설정
         onTap: (index) {
           setState(() {
             _currentIndex = index;
