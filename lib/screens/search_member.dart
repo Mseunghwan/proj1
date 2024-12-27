@@ -21,10 +21,10 @@ class SearchMember extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    // 검색 옵션 선택 (Dropdown)
-                    Expanded(
-                      flex: 2,
+                    Flexible(
+                      flex: 3,
                       child: DropdownButtonFormField<String>(
+                        isExpanded: true, // DropdownButton을 가로 공간에 맞춤
                         items: const [
                           DropdownMenuItem(value: "name", child: Text("이름")),
                           DropdownMenuItem(value: "email", child: Text("이메일")),
@@ -38,10 +38,10 @@ class SearchMember extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
+
                     ),
                     const SizedBox(width: 8),
-                    // 검색 텍스트 입력창
-                    Expanded(
+                    Flexible(
                       flex: 4,
                       child: TextField(
                         decoration: const InputDecoration(
@@ -51,8 +51,7 @@ class SearchMember extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    // 검색 버튼
-                    Expanded(
+                    Flexible(
                       flex: 2,
                       child: ElevatedButton(
                         onPressed: () {
@@ -64,6 +63,7 @@ class SearchMember extends StatelessWidget {
                   ],
                 ),
               ),
+
               const Divider(height: 1, color: Colors.grey),
               // 회원 리스트 영역
               Expanded(
