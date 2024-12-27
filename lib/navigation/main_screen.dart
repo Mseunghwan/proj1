@@ -14,10 +14,10 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    const Center(child: Text('회의 화면')),  // 임시 회의 화면
+    const Center(child: Text('메인 이미지 화면')),  // 메인 이미지 화면
+    const Announcement(),                  // 회원검색 화면
     const Announcement(),                  // 회원검색 화면
     const Announcement(),                  // 공지사항 화면
-    const Announcement(),                    // 공지사항 화면
   ];
 
   @override

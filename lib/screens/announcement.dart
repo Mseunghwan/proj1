@@ -1,4 +1,4 @@
-// board_screen.dart
+// lib/screens/announcement.dart
 import 'package:flutter/material.dart';
 
 class Announcement extends StatelessWidget {
@@ -8,7 +8,7 @@ class Announcement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // 기본 뒤로가기 버튼 제거
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF3B5998),
         title: Row(
           children: [
@@ -18,7 +18,6 @@ class Announcement extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            // MBC 로고
             const Text(
               '대구MBC',
               style: TextStyle(
@@ -26,15 +25,14 @@ class Announcement extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Spacer(), // 왼쪽과 오른쪽 사이 공간
+            const Spacer(),
             const Text(
               '공지사항',
               style: TextStyle(
                 fontSize: 18,
               ),
             ),
-            const SizedBox(width: 16), // 오른쪽 여백
-            // 설정 아이콘
+            const SizedBox(width: 16),
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {},
@@ -48,26 +46,31 @@ class Announcement extends StatelessWidget {
             child: ListView(
               children: [
                 _buildBoardItem(
+                  context,
                   '대구MBC문화원 2024 정기총회 및 송년의 밤 행사',
                   '2024-11-14',
                   '0',
                 ),
                 _buildBoardItem(
+                  context,
                   '대구MBC문화원 23기 수업안내(1114)',
                   '2024-11-14',
                   '0',
                 ),
                 _buildBoardItem(
+                  context,
                   '대구MBC문화원 22기 수업안내(1114)',
                   '2024-11-14',
                   '0',
                 ),
                 _buildBoardItem(
+                  context,
                   '대구MBC문화원 23기 수업안내(1107)',
                   '2024-11-05',
                   '0',
                 ),
                 _buildBoardItem(
+                  context,
                   '대구MBC문화원 22기 수업안내(1107)',
                   '2024-11-05',
                   '0',
@@ -81,41 +84,52 @@ class Announcement extends StatelessWidget {
     );
   }
 
-  Widget _buildBoardItem(String title, String date, String commentCount) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.grey.shade300,
-            width: 1,
+  Widget _buildBoardItem(BuildContext context, String title, String date, String commentCount) {
+    return InkWell(
+      onTap: () {
+        // 클릭 시 상세 페이지로 이동하는 기능
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('상세 내용이 준비되지 않았습니다.'),
+            duration: Duration(seconds: 1),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey.shade300,
+              width: 1,
+            ),
           ),
         ),
-      ),
-      child: ListTile(
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
+        child: ListTile(
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-        subtitle: Text(
-          date,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 14,
+          subtitle: Text(
+            date,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 14,
+            ),
           ),
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Text(
-            commentCount,
-            style: const TextStyle(color: Colors.red),
+          trailing: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              commentCount,
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         ),
       ),
@@ -133,27 +147,37 @@ class Announcement extends StatelessWidget {
           _buildPageButton('3'),
           _buildPageButton('4'),
           _buildPageButton('5'),
-          const Icon(Icons.chevron_right),
+          IconButton(
+            icon: const Icon(Icons.chevron_right),
+            onPressed: () {},
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          ),
         ],
       ),
     );
   }
 
   Widget _buildPageButton(String number, {bool isSelected = false}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: 32,
-      height: 32,
-      decoration: BoxDecoration(
-        color: isSelected ? Colors.blue : Colors.transparent,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Center(
-        child: Text(
-          number,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+    return InkWell(
+      onTap: () {
+        // 페이지 버튼 클릭 시 동작
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.blue : Colors.transparent,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Center(
+          child: Text(
+            number,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.black,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
         ),
       ),

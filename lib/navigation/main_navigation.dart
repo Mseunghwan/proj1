@@ -23,10 +23,10 @@ class MainNavigation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildNavItem(0, Icons.article_outlined, '회의'),
+          _buildNavItem(0, Icons.article_outlined, '회칙'),
           _buildNavItem(1, Icons.person_search_outlined, '회원검색'),
           _buildNavItem(2, Icons.notifications_outlined, '공지사항'),
-          _buildNavItem(3, Icons.campaign_outlined, '회의공유'),
+          _buildNavItem(3, Icons.campaign_outlined, '회원홍보'),
         ],
       ),
     );
